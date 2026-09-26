@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1e2d45 #080c14;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #080c14;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #1e2d45;
+    border-radius: 3px;
+  }
+
+  body {
+    @apply bg-sentinel-bg text-gray-100 font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse at top left, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(124, 58, 237, 0.03) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-sentinel-card border border-sentinel-border rounded-xl backdrop-blur-sm;
+    background: rgba(17, 24, 39, 0.8);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-sentinel-primary/30 hover:shadow-lg;
+  }
+
+  /* Sentinel glow button */
+  .btn-primary {
+    @apply px-4 py-2 bg-sentinel-primary text-sentinel-bg font-semibold rounded-lg
+    transition-all duration-200 hover:bg-sentinel-primary-dark active:scale-95
+    focus:outline-none focus:ring-2 focus:ring-sentinel-primary/50;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-transparent border border-sentinel-border text-gray-300 font-medium rounded-lg
+    transition-all duration-200 hover:border-sentinel-primary/50 hover:text-sentinel-primary
+    focus:outline-none focus:ring-2 focus:ring-sentinel-border;
+  }
+
+  .btn-danger {
+    @apply px-4 py-2 bg-sentinel-danger text-white font-semibold rounded-lg
+    transition-all duration-200 hover:bg-red-600 active:scale-95;
+  }
+
+  /* Status badges */
+  .badge-verified {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+    bg-emerald-500/20 text-emerald-400 border border-emerald-500/30;
+  }
+
+  .badge-suspicious {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+    bg-amber-500/20 text-amber-400 border border-amber-500/30;
+  }
+
+  .badge-high-risk {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+    bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+
+  .badge-pending {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+    bg-blue-500/20 text-blue-400 border border-blue-500/30;
+  }
+
+  .badge-failed {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+    bg-gray-500/20 text-gray-400 border border-gray-500/30;
+  }
+
+  /* Severity badges */
+  .severity-high {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
+    bg-red-500/20 text-red-400;
+  }
+
+  .severity-medium {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
+    bg-amber-500/20 text-amber-400;
+  }
+
+  .severity-low {
+    @apply inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
+    bg-green-500/20 text-green-400;
+  }
+
+  /* Stage progress item */
+  .stage-item {
+    @apply flex items-center gap-3 p-3 rounded-lg transition-all duration-300;
+  }
+
+  .stage-pending {
+    @apply stage-item bg-gray-800/30 border border-gray-700/30;
+  }
+
+  .stage-processing {
+    @apply stage-item bg-blue-500/10 border border-blue-500/30;
+    animation: borderPulse 1.5s ease-in-out infinite;
+  }
+
+  .stage-completed {
+    @apply stage-item bg-emerald-500/10 border border-emerald-500/30;
+  }
+
+  .stage-failed {
+    @apply stage-item bg-red-500/10 border border-red-500/30;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full bg-sentinel-surface border border-sentinel-border rounded-lg px-4 py-2.5
+    text-gray-100 placeholder-gray-500 focus:outline-none focus:border-sentinel-primary/50
+    focus:ring-1 focus:ring-sentinel-primary/20 transition-all duration-200;
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply glass-card p-6 flex flex-col gap-2;
+  }
+
+  /* Cyan glow text */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  }
+
+  /* Scan line animation overlay */
+  .scan-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 50%, rgba(0, 212, 255, 0.03) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .text-sentinel-gradient {
+    @apply bg-gradient-to-r from-sentinel-primary to-sentinel-accent bg-clip-text text-transparent;
+  }
+
+  .border-glow {
+    box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.3), 0 0 10px rgba(0, 212, 255, 0.1);
+  }
+
+  .mirror {
+    transform: scaleX(-1);
+  }
+}
+
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(59, 130, 246, 0.3); }
+  50% { border-color: rgba(59, 130, 246, 0.7); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}

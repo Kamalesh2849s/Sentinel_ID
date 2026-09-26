@@ -1,0 +1,48 @@
+# SentinelID Backend Requirements
+# Install with: pip install -r requirements.txt
+
+# ── Web Framework ─────────────────────────────────────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-multipart==0.0.9
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+pydantic==2.7.1
+pydantic-settings==2.3.0
+
+# ── Authentication ─────────────────────────────────────────────────────────────
+python-jose[cryptography]==3.3.0
+bcrypt==4.1.3
+passlib[bcrypt]==1.7.4
+
+# ── Database ──────────────────────────────────────────────────────────────────
+sqlalchemy==2.0.30
+# Uncomment for PostgreSQL:
+# psycopg2-binary==2.9.9
+
+# ── Image Processing ──────────────────────────────────────────────────────────
+Pillow==10.3.0
+opencv-python-headless==4.9.0.80
+numpy==1.26.4
+
+# ── OCR ───────────────────────────────────────────────────────────────────────
+# Option A: PaddleOCR (recommended, larger download)
+paddleocr==2.8.1
+paddlepaddle==2.6.1
+
+# Option B: Tesseract (fallback, lighter)
+pytesseract==0.3.10
+
+# ── Face Verification ──────────────────────────────────────────────────────────
+deepface==0.0.93
+tf-keras==2.16.0
+# tensorflow==2.16.1   # included as deepface dependency
+
+# ── Testing ────────────────────────────────────────────────────────────────────
+pytest==8.2.0
+pytest-asyncio==0.23.7
+httpx==0.27.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+python-dotenv==1.0.1
+aiofiles==23.2.1
